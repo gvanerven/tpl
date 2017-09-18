@@ -10,7 +10,7 @@ data Term = Var Id
 instance Show Term where 
  show (Var x) = x 
  show (Lambda var term) = "\\" ++ var ++ " -> " ++ show term 
- show (App term1 term2) = show term1 ++ show term2
+ show (App term1 term2) = show term1 ++ " " ++ show term2
 
 eval :: Term -> Term
 eval (Var v)             = undefined
