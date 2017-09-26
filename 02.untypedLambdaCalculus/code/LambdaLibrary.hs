@@ -26,3 +26,6 @@ isZero = Lambda "m" (App (App (Var "m") (App (Var "x") false)) true)
 --fix = λf. (λx. f (λy. x x y)) (λx. f (λy. x x y));
 --g = λfct. λn. if realeq n c0 then c1 else (times n (fct (prd n)));
 --factorial = fix g;
+
+test = [eval(App (App and' false) true)] ++ [App identity (App (Var "a") (Var "b"))] ++ [eval(App identity (Var "b"))] ++ [eval(App identity (App (Var "a") (Var "b")))]
+-- eval(App (App apply (Var "arg")) (Var "boing"))
