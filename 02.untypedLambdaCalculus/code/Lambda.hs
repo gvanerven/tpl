@@ -14,15 +14,11 @@ instance Show Term where
           
 eval :: Term -> Term
 eval (Var v)             = Var v
---eval (Lambda v (App t1 t2)) = Lambda v (eval(App t1 t2))
---eval(Lambda v (Var x)) = Lambda v (eval(Var x))
---eval (Lambda v t) = Lambda v (eval(t))
---eval (App t1 t2)         = eval (subst var t2 body)
--- where (Lambda var body) = eval t1
 eval (Lambda v body)       = Lambda v body
 eval (App (Var x) (Var y)) = App (Var x) (Var y)
-eval (App (Var x) t)       = App (Var x) t
-eval (App t (Var y))       = App t (Var y)
+eval (App (Var x) t)       = Var x
+eval (App t (Var y))       = eval(subst var (Var y) body)
+ where (Lambda var body)   = eval t
 eval (App t1 t2)           = eval(subst var t2 body)
  where (Lambda var body)   = eval t1
             
