@@ -28,4 +28,4 @@ isZero = Lambda "m" (App (App (Var "m") (App (Var "x") false)) true)
 --factorial = fix g;
 
 test = [eval(App (App and' false) true)] ++ [App identity (App (Var "a") (Var "b"))] ++ [eval(App identity (Var "b"))] ++ [eval(App identity (App (Var "a") (Var "b")))]
--- eval(App (App apply (Var "arg")) (Var "boing"))
+--eval(App (App apply (Var "arg")) (Var "boing"))

@@ -1,6 +1,6 @@
 module Lambda where
 
-type Id = String 
+type Id = String
 
 data Term = Var Id 
           | Lambda Id Term
@@ -12,6 +12,8 @@ instance Show Term where
  show (Lambda var term) = "\\" ++ var ++ " -> " ++ show term 
  show (App term1 term2) = "(" ++ show term1 ++ " " ++ show term2 ++ ")"
           
+ --type Context = [(Term, Id)]
+
 eval :: Term -> Term
 eval (Var v)             = Var v
 eval (Lambda v body)       = Lambda v body
@@ -33,9 +35,3 @@ subst v t1 (Lambda x t2)
           
 subst v t1 (App t2 t3) = App (subst v t1 t2) (subst v t1 t3)
 
---eval (Lambda v (App t1 t2)) = (Lambda v (eval(App t1 t2)))
---subst v t1 (Lambda x t2)
--- | v == x = Lambda x t1
--- | otherwise = Lambda x (subst v t1 t2)
--- λf.f λs.(s s)
---subst v t1 (App t2 t3) = App (subst v (eval(t1)) t2) (subst v (eval(t1)) t3)
